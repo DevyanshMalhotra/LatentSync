@@ -1,8 +1,3 @@
-Below is a complete, updated README that documents every step—from environment setup and model downloads to running inference with superresolution (using GFPGAN and CodeFormer) for the LatentSync project. You can copy and paste this updated README into your repository so that anyone (including the hiring team) can reproduce your results.
-
----
-
-```markdown
 # LatentSync: Audio Conditioned Latent Diffusion Models for Lip Sync
 
 <div align="center">
