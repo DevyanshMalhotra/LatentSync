@@ -71,7 +71,7 @@ def post_process_video(orig_video_path, mask_video_path, output_video_path, supe
     cap_orig.release()
     cap_mask.release()
     out.release()
-    print(f"Superresolution post-processing completed. Output saved to {output_video_path}")
+    print(f"Superresolution post-processing completed.")
 
 def main(config, args):
     # Determine data type based on GPU capabilities
@@ -134,14 +134,11 @@ def main(config, args):
         height=config.data.resolution,
     )
 
+ # If a superresolution method is provided, post-process the output video.
     if args.superres.lower() != "none":
         mask_video_path = args.video_out_path.replace(".mp4", "_mask.mp4")
-        # Define a temporary output path for the superresolution process.
-        temp_output_path = args.video_out_path.replace(".mp4", "_tmp.mp4")
-        # Post-process the video: read from the original video and write to a temporary file.
-        post_process_video(args.video_out_path, mask_video_path, temp_output_path, args.superres)
-        # Replace the original output video with the enhanced version.
-        os.replace(temp_output_path, args.video_out_path)
+        output_superres_path = args.video_out_path.replace(".mp4", "_superres.mp4")
+        post_process_video(args.video_out_path, mask_video_path, output_superres_path, args.superres)
 
 
 if __name__ == "__main__":
